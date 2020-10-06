@@ -46,7 +46,9 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
   static final navKey = new GlobalKey<NavigatorState>();
+
   const MyApp({Key navKey}) : super(key: navKey);
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -76,8 +78,7 @@ class _MyAppState extends State<MyApp> {
   final _formKey = GlobalKey<FormState>();
   String inputString = "";
   TextFormField input;
-  List<DropdownMenuItem<ExampleNumber>> numberItems =
-      ExampleNumber.list.map((exNum) {
+  List<DropdownMenuItem<ExampleNumber>> numberItems = ExampleNumber.list.map((exNum) {
     return (DropdownMenuItem(child: Text(exNum.numberString), value: exNum));
   }).toList();
   List<int> selectedItemsMultiSelect3Menu = [];
@@ -90,12 +91,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     String wordPair = "";
-    loremIpsum
-        .toLowerCase()
-        .replaceAll(",", "")
-        .replaceAll(".", "")
-        .split(" ")
-        .forEach((word) {
+    loremIpsum.toLowerCase().replaceAll(",", "").replaceAll(".", "").split(" ").forEach((word) {
       if (wordPair.isEmpty) {
         wordPair = word + " ";
       } else {
@@ -308,11 +304,7 @@ class _MyAppState extends State<MyApp> {
             keyword.split(" ").forEach((k) {
               int i = 0;
               items.forEach((item) {
-                if (k.isNotEmpty &&
-                    (item.value
-                        .toString()
-                        .toLowerCase()
-                        .contains(k.toLowerCase()))) {
+                if (k.isNotEmpty && (item.value.toString().toLowerCase().contains(k.toLowerCase()))) {
                   ret.add(i);
                 }
                 i++;
@@ -329,9 +321,7 @@ class _MyAppState extends State<MyApp> {
         label: "Label for multi",
         underline: Container(
           height: 1.0,
-          decoration: BoxDecoration(
-              border:
-                  Border(bottom: BorderSide(color: Colors.teal, width: 3.0))),
+          decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.teal, width: 3.0))),
         ),
         iconDisabledColor: Colors.brown,
         iconEnabledColor: Colors.indigo,
@@ -417,8 +407,7 @@ class _MyAppState extends State<MyApp> {
                   onPressed: () {
                     setState(() {
                       selectedItemsClose.clear();
-                      selectedItemsClose.addAll(
-                          Iterable<int>.generate(items.length).toList());
+                      selectedItemsClose.addAll(Iterable<int>.generate(items.length).toList());
                     });
                     updateParent(selectedItemsClose);
                   },
@@ -457,8 +446,7 @@ class _MyAppState extends State<MyApp> {
                   onPressed: () {
                     setState(() {
                       selectedItemsClose.clear();
-                      selectedItemsClose.addAll(
-                          Iterable<int>.generate(items.length).toList());
+                      selectedItemsClose.addAll(Iterable<int>.generate(items.length).toList());
                     });
                     updateParent(selectedItemsClose);
                   },
@@ -576,19 +564,14 @@ class _MyAppState extends State<MyApp> {
             child: Text("No choice, click to add one"),
           ));
         },
-        closeButton:
-            (String value, BuildContext closeContext, Function updateParent) {
+        closeButton: (String value, BuildContext closeContext, Function updateParent) {
           return (editableItems.length >= 100
               ? "Close"
               : FlatButton(
                   onPressed: () {
                     addItemDialog().then((value) async {
-                      if (value != null &&
-                          editableItems.indexWhere(
-                                  (element) => element.value == value) !=
-                              -1) {
-                        Navigator.pop(
-                            MyApp.navKey.currentState.overlay.context);
+                      if (value != null && editableItems.indexWhere((element) => element.value == value) != -1) {
+                        Navigator.pop(MyApp.navKey.currentState.overlay.context);
                         updateParent(value);
                       }
                     });
@@ -653,20 +636,17 @@ class _MyAppState extends State<MyApp> {
             child: Text("No choice, click to add one"),
           ));
         },
-        closeButton: (List<int> values, BuildContext closeContext,
-            Function updateParent) {
+        closeButton: (List<int> values, BuildContext closeContext, Function updateParent) {
           return (editableItems.length >= 100
               ? "Close"
               : FlatButton(
                   onPressed: () {
                     addItemDialog().then((value) async {
                       if (value != null) {
-                        int itemIndex = editableItems
-                            .indexWhere((element) => element.value == value);
+                        int itemIndex = editableItems.indexWhere((element) => element.value == value);
                         if (itemIndex != -1) {
                           editableSelectedItems.add(itemIndex);
-                          Navigator.pop(
-                              MyApp.navKey.currentState.overlay.context);
+                          Navigator.pop(MyApp.navKey.currentState.overlay.context);
                           updateParent(editableSelectedItems);
                         }
                       }
@@ -705,8 +685,7 @@ class _MyAppState extends State<MyApp> {
               onPressed: () {
                 int indexOfItem = editableItems.indexOf(item);
                 editableItems.removeWhere((element) => item == element);
-                editableSelectedItems
-                    .removeWhere((element) => element == indexOfItem);
+                editableSelectedItems.removeWhere((element) => element == indexOfItem);
                 for (int i = 0; i < editableSelectedItems.length; i++) {
                   if (editableSelectedItems[i] > indexOfItem) {
                     editableSelectedItems[i]--;
@@ -793,8 +772,7 @@ class _MyAppState extends State<MyApp> {
         isExpanded: true,
       ),
       "Single dialog right to left": SearchChoices.single(
-        items: ["طنجة", "فاس‎", "أكادير‎", "تزنيت‎", "آكــلــو", "سيدي بيبي"]
-            .map<DropdownMenuItem<String>>((string) {
+        items: ["طنجة", "فاس‎", "أكادير‎", "تزنيت‎", "آكــلــو", "سيدي بيبي"].map<DropdownMenuItem<String>>((string) {
           return (DropdownMenuItem<String>(
             child: Text(
               string,
@@ -921,8 +899,7 @@ class _MyAppState extends State<MyApp> {
           return (Container(
             margin: const EdgeInsets.all(15.0),
             padding: const EdgeInsets.all(3.0),
-            decoration:
-                BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+            decoration: BoxDecoration(border: Border.all(color: Colors.blueAccent)),
             child: Text(
               item,
               overflow: TextOverflow.ellipsis,
@@ -935,6 +912,24 @@ class _MyAppState extends State<MyApp> {
             Wrap(children: list),
           ]));
         },
+      ),
+      "Single dialog with onTap function": Column(
+        children: [
+          TextField(),
+          SearchChoices.single(
+            items: items,
+            value: selectedValueSingleDialog,
+            hint: "Select one",
+            searchHint: "Select one",
+            onChanged: (value) {
+              setState(() {
+                selectedValueSingleDialog = value;
+              });
+            },
+            isExpanded: true,
+            clearFocus: true,
+          ),
+        ],
       ),
     };
 
@@ -949,9 +944,7 @@ class _MyAppState extends State<MyApp> {
                   actions: appBarActions,
                   bottom: TabBar(
                     isScrollable: true,
-                    tabs: Iterable<int>.generate(widgets.length)
-                        .toList()
-                        .map((i) {
+                    tabs: Iterable<int>.generate(widgets.length).toList().map((i) {
                       return (Tab(
                         text: (i + 1).toString(),
                       ));
