@@ -528,6 +528,9 @@ class _SearchChoicesState<T> extends State<SearchChoices<T>> {
   }
 
   Widget get menuWidget {
+    if (widget.onTap != null) {
+      widget.onTap();
+    }
     return StatefulBuilder(builder: (BuildContext context, StateSetter setStateFromBuilder) {
       return (DropdownDialog(
         items: widget.items,
@@ -618,9 +621,6 @@ class _SearchChoicesState<T> extends State<SearchChoices<T>> {
                       }
                     } else {
                       displayMenu.value = true;
-                    }
-                    if (widget.onTap != null) {
-                      widget.onTap();
                     }
                     if (mounted) {
                       setState(() {});
