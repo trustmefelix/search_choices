@@ -927,7 +927,9 @@ class _MyAppState extends State<MyApp> {
               });
             },
             isExpanded: true,
-            clearFocus: true,
+            onTap: () {
+              FocusScope.of(context).requestFocus(FocusNode());
+            },
           ),
         ],
       ),

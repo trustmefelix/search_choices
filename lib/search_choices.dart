@@ -138,7 +138,7 @@ class SearchChoices<T> extends StatefulWidget {
   final bool rightToLeft;
   final bool autofocus;
   final Function selectedAggregateWidgetFn;
-  final bool clearFocus;
+  final Function onTap;
 
   /// Search choices Widget with a single choice that opens a dialog or a menu to let the user do the selection conveniently with a search.
   ///
@@ -210,7 +210,7 @@ class SearchChoices<T> extends StatefulWidget {
     bool rightToLeft = false,
     bool autofocus = true,
     Function selectedAggregateWidgetFn,
-    bool clearFocus = false,
+    Function onTap,
   }) {
     return (SearchChoices._(
       key: key,
@@ -247,7 +247,7 @@ class SearchChoices<T> extends StatefulWidget {
       rightToLeft: rightToLeft,
       autofocus: autofocus,
       selectedAggregateWidgetFn: selectedAggregateWidgetFn,
-      clearFocus: clearFocus,
+      onTap: onTap,
     ));
   }
 
@@ -319,7 +319,7 @@ class SearchChoices<T> extends StatefulWidget {
     bool rightToLeft = false,
     bool autofocus = true,
     Function selectedAggregateWidgetFn,
-    bool clearFocus = false,
+    Function onTap,
   }) {
     return (SearchChoices._(
       key: key,
@@ -356,7 +356,7 @@ class SearchChoices<T> extends StatefulWidget {
       rightToLeft: rightToLeft,
       autofocus: autofocus,
       selectedAggregateWidgetFn: selectedAggregateWidgetFn,
-      clearFocus: clearFocus,
+      onTap: onTap,
     ));
   }
 
@@ -396,7 +396,7 @@ class SearchChoices<T> extends StatefulWidget {
     this.rightToLeft,
     this.autofocus,
     this.selectedAggregateWidgetFn,
-    this.clearFocus,
+    this.onTap,
   })  : assert(items != null),
         assert(iconSize != null),
         assert(isExpanded != null),
@@ -525,8 +525,8 @@ class _SearchChoicesState<T> extends State<SearchChoices<T>> {
   void didUpdateWidget(SearchChoices oldWidget) {
     super.didUpdateWidget(oldWidget);
     updateSelectedItems();
-    if (widget.clearFocus) {
-      FocusScope.of(context).requestFocus(FocusNode());
+    if (widget.onTap != null) {
+      widget.onTap();
     }
   }
 
