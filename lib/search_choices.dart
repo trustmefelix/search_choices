@@ -525,9 +525,6 @@ class _SearchChoicesState<T> extends State<SearchChoices<T>> {
   void didUpdateWidget(SearchChoices oldWidget) {
     super.didUpdateWidget(oldWidget);
     updateSelectedItems();
-    if (widget.onTap != null) {
-      widget.onTap();
-    }
   }
 
   Widget get menuWidget {
@@ -621,6 +618,9 @@ class _SearchChoicesState<T> extends State<SearchChoices<T>> {
                       }
                     } else {
                       displayMenu.value = true;
+                    }
+                    if (widget.onTap != null) {
+                      widget.onTap();
                     }
                     if (mounted) {
                       setState(() {});
